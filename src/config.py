@@ -24,8 +24,13 @@ import json
 
 data_timer = dict()
 # Opening JSON file
-with open('data_timer.json') as json_file:
-    data_timer = json.load(json_file)
+try:
+    with open('data_timer.json') as json_file:
+        data_timer = json.load(json_file)
+except:
+    data_timer = {'minutes': 1, 'hours': 0}
+    with open('data_timer.json', 'w') as file:
+        json.dump(data_timer, file)
 
 
 def change(new_data_timer):
